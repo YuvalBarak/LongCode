@@ -1,8 +1,21 @@
+import socket
 def Connect(ip, port):
+    s = socket.socket()
+    s.connect((ip, port))
+    return s
 
+def Client(ip, port):
+    s = Connect(ip, port)
+    while True:
+        try:
+            txt = raw_input()
+            s.send(txt)
+            if txt == 'quit':
+                s.close()
+                break
+        except:
+            break
 
-def Client():
-    Connect(ip, port)
     
 
 if __name__ == "__main__":
